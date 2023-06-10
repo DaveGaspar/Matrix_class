@@ -13,6 +13,8 @@ class matrix{
 				arr_2d[i] = new int[column];
 		}
 		matrix(int const n, int const m){
+			if (n < 1 || m < 1)
+				throw std::invalid_argument("Rows and columns must be over 1.");
 			row = n;
 			column = m;
 			arr_2d = new int*[row];
@@ -45,23 +47,17 @@ int main(){
 	obj1->init();
 	obj1->print();
 	
-	int* n = new int;
-	int* m = new int;
+	int n, m;
+
+	std::cout << "Row = ";
+	std::cin >> n;
 	
-	do{
-		std::cout << "Row = ";
-		std::cin >> *n;
-	} while(*n < 1);
-	do{
-		std::cout << "Column = ";
-		std::cin >> *m;
-	} while(*m < 1);
-
-
-	matrix* obj2 = new matrix(*n,*m);
+	std::cout << "Column = ";
+	std::cin >> m;
+	
+	matrix* obj2 = new matrix(n,m);
 	obj2->init();
 	obj2->print();
-
 
 	delete obj1;
 	obj1 = nullptr;
